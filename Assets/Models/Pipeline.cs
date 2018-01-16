@@ -8,13 +8,52 @@ public abstract class Pipeline : MonoBehaviour
 
     protected Manager Manager { get; set; }
 
-    public IEnumerable<Worker> Workers { get; protected set; }
+    [SerializeField]
+    private IEnumerable<Worker> _workers;
 
-    public Sink Sink { get; protected set; }
+    public IEnumerable<Worker> Workers
+    {
+        get { return _workers; }
+        protected set { _workers = value; }
+    }
 
-    public IEnumerable<Source> Sources { get; protected set; }
+    [SerializeField]
+    private IList<Source> _sources;
     
-    public PipelineProperties Properties { get; protected set; }
+    public IList<Source> Sources
+    {
+        get { return _sources; }
+        protected set { _sources = value; }
+    }
 
-    public Transform WorkerStation { get; protected set; }
+    [SerializeField]
+    private Sink _sink;
+
+    public Sink Sink
+    {
+        get { return _sink; }
+        protected set { _sink = value; }
+    }
+
+
+    [SerializeField]
+    private PipelineProperties _properties;
+
+    public PipelineProperties Properties
+    {
+        get { return _properties; }
+        protected set { _properties = value; }
+    }
+
+    [SerializeField]
+    private Transform _workerStation;
+
+    public Transform WorkerStation
+    {
+        get { return _workerStation; }
+        protected set { _workerStation = value; }
+    }
+
+
+
 }

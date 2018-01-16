@@ -6,14 +6,25 @@ using UnityEngine;
 
 public abstract class Endpoint : MonoBehaviour
 {
-    [SerializeField]
-    public Transform AccessPoint { get; set; }
+    public Transform AccessPoint;
 
-    public Store Store { get; set; }
+    public Store Store;
+
+    public string AccessPointTag;
+
+    [SerializeField]
+    private bool _infinite;
+
+    public bool Infinite
+    {
+        get { return _infinite; }
+        protected set { _infinite = value; }
+    }
 
     public void Start()
     {
         Store = gameObject.GetComponentInParent<Store>();
+        AccessPoint = transform.GetChildObjectsWithTag(AccessPointTag).First();
     }
 
     // Temporary name.

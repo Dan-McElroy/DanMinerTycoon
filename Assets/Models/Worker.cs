@@ -7,16 +7,19 @@ using UnityEngine;
 public class Worker : MonoBehaviour
 {
     [SerializeField]
-    private Pipeline Assignment { get; set; }
+    private Pipeline Assignment;
     
-    [SerializeField]
-    public WorkerState State { get; set; }
+
+    public PipelineProperties Properties => Assignment.Properties;
     
-    [SerializeField]
-    public float Load { get; set; }
+
+    
+    public WorkerState State;
+    
+    public float Load;
 
     [SerializeField]
-    private Queue<Endpoint> TaskQueue { get; set; }
+    private Queue<Endpoint> TaskQueue;
     
 
     public void Start()
@@ -36,6 +39,7 @@ public class Worker : MonoBehaviour
                 {
                     State = WorkerState.Idle;
                 }
+                return;
             }
             var nextDestination = TaskQueue.Peek().AccessPoint;
             MoveTowards(nextDestination);
@@ -46,7 +50,15 @@ public class Worker : MonoBehaviour
             }
         }
     }
-    
+
+    public void OnMouseDown()
+    {
+        if (State == WorkerState.Idle)
+        {
+            BeginWork();
+        }
+    }
+
     public void BeginWork()
     {
         // Go get the resources from the source, put them in the sink
@@ -58,7 +70,7 @@ public class Worker : MonoBehaviour
     private void MoveTowards(Transform target)
     {
         transform.position = Vector3.MoveTowards(transform.position, target.position,
-            Assignment.Properties.WorkerSpeed * Time.fixedDeltaTime);
+            Properties.WorkerSpeed * Time.fixedDeltaTime);
     }
 
     private bool Reached(Transform target)

@@ -6,7 +6,8 @@ using UnityEngine;
 
 public class Store : MonoBehaviour
 {
-    private float Quantity { get; set; }
+    [SerializeField]
+    private float Quantity;
 
     public float Extract(float desiredQuantity)
     {
