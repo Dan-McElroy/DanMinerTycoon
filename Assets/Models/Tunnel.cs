@@ -8,5 +8,9 @@ public class Tunnel : Pipeline
 {
     public void Start()
     {
+        Store = gameObject.GetComponent<Store>();
+        Sources = gameObject.GetComponentsInChildren<Source>();
+        Workers = gameObject.GetComponentsInChildren<Worker>();
+        Sink = gameObject.GetComponentInChildren<Sink>();
     }
 }
