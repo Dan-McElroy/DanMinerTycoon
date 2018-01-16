@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public abstract class Pipeline : MonoBehaviour
@@ -54,6 +55,14 @@ public abstract class Pipeline : MonoBehaviour
         protected set { _workerStation = value; }
     }
 
-
-
+    public void Start()
+    {
+        Properties = gameObject.GetComponentInChildren<PipelineProperties>();
+        Store = gameObject.GetComponent<Store>();
+        Sources = gameObject.GetComponentsInChildren<Source>().ToList();
+        // Removes the tunnel's own source from the list.
+        Sources.Remove(gameObject.GetComponent<Source>());
+        Workers = gameObject.GetComponentsInChildren<Worker>().ToList();
+        Sink = gameObject.GetComponentInChildren<Sink>();
+    }
 }
