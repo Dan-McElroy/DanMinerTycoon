@@ -10,19 +10,16 @@ public class PipelineProperties : MonoBehaviour
 {
     [SerializeField]
     private float BaseWorkerSpeed;
-
+    
     [SerializeField]
     private float BaseWorkerCapacity;
 
     [SerializeField]
     private float BaseUpgradeCost;
-
+    
     [SerializeField]
     private int _level;
 
-    [SerializeField]
-    private Text LevelText;
-    
     public int Level
     {
         get { return _level; }
@@ -32,6 +29,9 @@ public class PipelineProperties : MonoBehaviour
             LevelText.text = value.ToString();
         }
     }
+
+    [SerializeField]
+    private Text LevelText;
 
     public void Upgrade()
     {
