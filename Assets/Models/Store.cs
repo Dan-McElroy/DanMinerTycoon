@@ -7,7 +7,25 @@ using UnityEngine;
 public class Store : MonoBehaviour
 {
     [SerializeField]
-    private float Quantity;
+    private float _quantity;
+
+    private float Quantity
+    {
+        get { return _quantity; }
+        set
+        {
+            _quantity = value;
+            QuantityText.text = value.ToString();
+        }
+    }
+
+    private TextMesh QuantityText;
+
+    public void Start()
+    {
+        QuantityText = gameObject.GetComponentInChildren<TextMesh>();
+        Quantity = 0;
+    }
 
     public float Extract(float desiredQuantity)
     {

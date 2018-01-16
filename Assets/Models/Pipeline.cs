@@ -60,7 +60,6 @@ public abstract class Pipeline : MonoBehaviour
         Properties = gameObject.GetComponentInChildren<PipelineProperties>();
         Store = gameObject.GetComponent<Store>();
         Workers = gameObject.GetComponentsInChildren<Worker>().ToList();
-        Sink = gameObject.GetComponentInChildren<Sink>();
         Sources = GetSources();
     }
 

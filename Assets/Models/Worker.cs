@@ -11,12 +11,24 @@ public class Worker : MonoBehaviour
     
 
     public PipelineProperties Properties => Assignment.Properties;
-    
 
+    [SerializeField]
+    private TextMesh LoadText;
     
     public WorkerState State;
     
-    public float Load;
+    [SerializeField]
+    private float _load;
+
+    public float Load
+    {
+        get { return _load; }
+        set
+        {
+            _load = value;
+            LoadText.text = value.ToString();
+        }
+    }
 
     [SerializeField]
     private Queue<Endpoint> TaskQueue;
@@ -25,6 +37,8 @@ public class Worker : MonoBehaviour
     public void Start()
     {
         Assignment = gameObject.GetComponentInParent<Pipeline>();
+        LoadText = gameObject.GetComponentInChildren<TextMesh>();
+        LoadText.text = Load.ToString();
         State = WorkerState.Idle;
     }
 
