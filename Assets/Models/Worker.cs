@@ -25,11 +25,42 @@ public class Worker : MonoBehaviour
         State = WorkerState.Idle;
     }
 
-    public void Update()
+    public void FixedUpdate()
     {
+        if (State == WorkerState.Travelling)
+        {
+            if (!TaskQueue.Any())
+            {
+                MoveTowards(Assignment.WorkerStation);
+                if (Reached(Assignment.WorkerStation))
+                {
+                    State = WorkerState.Idle;
+                }
+            }
+            var nextDestination = TaskQueue.Peek().AccessPoint;
+            MoveTowards(nextDestination);
+            if (Reached(nextDestination))
+            {
+                TaskQueue.Dequeue().Interact(this);
+                State = WorkerState.Travelling;
+            }
+        }
     }
     
     public void BeginWork()
     {
+        // Go get the resources from the source, put them in the sink
+        TaskQueue = new Queue<Endpoint>(Assignment.Sources.ToArray());
+        TaskQueue.Enqueue(Assignment.Sink);
+        State = WorkerState.Travelling;
     }
+
+    private void MoveTowards(Transform target)
+    {
+        transform.position = Vector3.MoveTowards(transform.position, target.position,
+            Assignment.Properties.WorkerSpeed * Time.fixedDeltaTime);
+    }
+
+    private bool Reached(Transform target)
+        => Vector3.Distance(transform.position, target.position) < .1;
 }
