@@ -10,10 +10,13 @@ public class Store : MonoBehaviour
 
     public float Extract(float desiredQuantity)
     {
-        return 0;
+        var extracted = Math.Min(Quantity, desiredQuantity);
+        Quantity -= extracted;
+        return extracted;
     }
 
     public void Deposit(float quantity)
     {
+        Quantity += quantity;
     }
 }
