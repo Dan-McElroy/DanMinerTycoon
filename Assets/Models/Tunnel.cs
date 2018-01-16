@@ -8,7 +8,7 @@ public class Tunnel : Pipeline
 {
     public void Start()
     {
-        Properties = gameObject.GetComponent<PipelineProperties>();
+        Properties = gameObject.GetComponentInChildren<PipelineProperties>();
         Store = gameObject.GetComponent<Store>();
         Sources = gameObject.GetComponentsInChildren<Source>().ToList();
         // Removes the tunnel's own source from the list.

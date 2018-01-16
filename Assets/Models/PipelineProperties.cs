@@ -19,11 +19,18 @@ public class PipelineProperties : MonoBehaviour
 
     [SerializeField]
     private int _level;
+
+    [SerializeField]
+    private Text LevelText;
     
     public int Level
     {
         get { return _level; }
-        private set { _level = value; }
+        private set
+        {
+            _level = value;
+            LevelText.text = value.ToString();
+        }
     }
 
     public void Upgrade()
@@ -31,7 +38,7 @@ public class PipelineProperties : MonoBehaviour
         Level++;
     }
 
-    public PipelineProperties()
+    public void Start()
     {
         Level = 1;
     }
