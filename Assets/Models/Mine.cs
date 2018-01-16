@@ -1,12 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Assets.Models
+public class Mine : Pipeline
 {
-    public class Mine : Pipeline
-    {
-        protected override IEnumerable<Source> GetSources()
-            => GetComponentsInChildren<Tunnel>()
-                .Select(tunnel => tunnel.GetComponent<Source>());
-    }
+    protected override IEnumerable<Source> GetSources()
+        => GetComponentsInChildren<Tunnel>()
+            .Select(tunnel => tunnel.GetComponent<Source>());
 }

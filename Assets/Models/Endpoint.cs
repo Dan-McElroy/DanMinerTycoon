@@ -23,7 +23,6 @@ public abstract class Endpoint : MonoBehaviour
 
     public void Start()
     {
-        Store = gameObject.GetComponentInParent<Store>();
         AccessPoint = transform.GetChildObjectsWithTag(AccessPointTag).First();
     }
 
