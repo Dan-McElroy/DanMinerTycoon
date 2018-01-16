@@ -15,6 +15,7 @@ public class PipelineProperties
 
     public void Upgrade()
     {
+        Level++;
     }
 
     public float WorkerSpeed => BaseWorkerSpeed * Level;
