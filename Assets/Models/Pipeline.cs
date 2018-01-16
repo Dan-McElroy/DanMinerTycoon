@@ -19,9 +19,9 @@ public abstract class Pipeline : MonoBehaviour
     }
 
     [SerializeField]
-    private IList<Source> _sources;
+    private IEnumerable<Source> _sources;
     
-    public IList<Source> Sources
+    public IEnumerable<Source> Sources
     {
         get { return _sources; }
         protected set { _sources = value; }
@@ -59,10 +59,10 @@ public abstract class Pipeline : MonoBehaviour
     {
         Properties = gameObject.GetComponentInChildren<PipelineProperties>();
         Store = gameObject.GetComponent<Store>();
-        Sources = gameObject.GetComponentsInChildren<Source>().ToList();
-        // Removes the tunnel's own source from the list.
-        Sources.Remove(gameObject.GetComponent<Source>());
         Workers = gameObject.GetComponentsInChildren<Worker>().ToList();
         Sink = gameObject.GetComponentInChildren<Sink>();
+        Sources = GetSources();
     }
+
+    protected abstract IEnumerable<Source> GetSources();
 }

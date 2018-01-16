@@ -14,4 +14,12 @@ public class Tunnel : Pipeline
         get { return _depth; }
         private set { _depth = value; }
     }
+
+    protected override IEnumerable<Source> GetSources()
+    {
+        var sources = gameObject.GetComponentsInChildren<Source>().ToList();
+        // Removes the tunnel's own source from the list.
+        sources.Remove(gameObject.GetComponent<Source>());
+        return sources;
+    }
 }
