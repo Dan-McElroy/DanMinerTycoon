@@ -57,7 +57,6 @@ public abstract class Pipeline : MonoBehaviour
 
     public void Start()
     {
-        Properties = gameObject.GetComponentInChildren<PipelineProperties>();
         Store = gameObject.GetComponent<Store>();
         Workers = gameObject.GetComponentsInChildren<Worker>().ToList();
         Sources = GetSources();
