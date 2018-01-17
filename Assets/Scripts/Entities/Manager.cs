@@ -1,35 +1,39 @@
-﻿using UnityEngine;
+﻿using DanMinerTycoon.Environment;
+using UnityEngine;
 
-/// <summary>
-/// A component that oversees <see cref="Worker"/>s in a <see cref="Pipeline"/>.
-/// </summary>
-public class Manager : MonoBehaviour
+namespace DanMinerTycoon.Entities
 {
     /// <summary>
-    /// The <see cref="Pipeline"/> this <see cref="Manager"/> oversees.
+    /// A component that oversees <see cref="Worker"/>s in a <see cref="Pipeline"/>.
     /// </summary>
-    [SerializeField]
-    private Pipeline Assignment;
-
-    /// <summary>
-    /// Called at the start of this component's lifecycle, this
-    /// method finds its related <see cref="Pipeline"/>.
-    /// </summary>
-    public void Start()
+    public class Manager : MonoBehaviour
     {
-        Assignment = gameObject.GetComponentInParent<Pipeline>();
-    }
+        /// <summary>
+        /// The <see cref="Pipeline"/> this <see cref="Manager"/> oversees.
+        /// </summary>
+        [SerializeField]
+        private Pipeline Assignment;
 
-    /// <summary>
-    /// Checks for idle <see cref="Worker"/>s, and re-engages them.
-    /// </summary>
-    public void Update()
-    {
-        foreach (var worker in Assignment.Workers)
+        /// <summary>
+        /// Called at the start of this component's lifecycle, this
+        /// method finds its related <see cref="Pipeline"/>.
+        /// </summary>
+        public void Start()
         {
-            if (worker.State == WorkerState.Idle)
+            Assignment = gameObject.GetComponentInParent<Pipeline>();
+        }
+
+        /// <summary>
+        /// Checks for idle <see cref="Worker"/>s, and re-engages them.
+        /// </summary>
+        public void Update()
+        {
+            foreach (var worker in Assignment.Workers)
             {
-                worker.BeginWork();
+                if (worker.State == WorkerState.Idle)
+                {
+                    worker.BeginWork();
+                }
             }
         }
     }
