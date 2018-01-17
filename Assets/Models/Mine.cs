@@ -18,7 +18,24 @@ public class Mine : Pipeline
     [SerializeField]
     private Tunnel TunnelTemplate;
 
+    /// <summary>
+    /// The base cost to create a new tunnel.
+    /// </summary>
+    [SerializeField]
+    private float BaseExpansionCost;
+
 #pragma warning restore 0649
+
+    /// <summary>
+    /// The current cost to create a new tunnel.
+    /// </summary>
+    private float ExpansionCost => Sources.Count() * BaseExpansionCost;
+
+    /// <summary>
+    /// A reference to the player's <see cref="CashStore"/>.
+    /// </summary>
+    public CashStore PlayerCash
+        => GameObject.FindWithTag("Player").GetComponent<CashStore>();
 
     /// <summary>
     /// Finds <see cref="Source"/>s from child <see cref="Tunnel"/> objects.
@@ -34,6 +51,7 @@ public class Mine : Pipeline
     /// </summary>
     public void AddTunnel()
     {
+        PlayerCash.Extract(ExpansionCost);
         var newTunnel = Instantiate(TunnelTemplate, transform);
         newTunnel.Depth = Sources.Count() - 1;
     }
