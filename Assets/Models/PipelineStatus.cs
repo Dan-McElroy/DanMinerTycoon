@@ -107,7 +107,7 @@ public class PipelineStatus : MonoBehaviour
 
     /// <summary>
     /// Called at the start of this component's lifecycle, this
-    /// method sets the level value to update the display.
+    /// method sets the <see cref="Level"/> value to update the display.
     /// </summary>
     public void Start()
     {

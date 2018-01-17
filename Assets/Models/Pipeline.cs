@@ -14,18 +14,6 @@ public abstract class Pipeline : MonoBehaviour
     #region Properties
 
     #region Private
-    
-    /// <summary>
-    /// Private variable for <see cref="Sources"/>
-    /// </summary>
-    /// <remarks>
-    /// Not for general use, <see cref="Sources"/>
-    /// should be used to access and mutate this
-    /// value.
-    /// </remarks>
-    [SerializeField]
-    [Obsolete("Use property Sources instead.")]
-    private IEnumerable<Source> _sources;
 
     /// <summary>
     /// Private variable for <see cref="Sink"/>
@@ -90,14 +78,7 @@ public abstract class Pipeline : MonoBehaviour
     /// that <see cref="Worker"/>s in this pipeline
     /// draw from.
     /// </summary>
-    public IEnumerable<Source> Sources
-    {
-// Disable warnings for using Obsolete property.
-#pragma warning disable 0618
-        get { return _sources; }
-        protected set { _sources = value; }
-#pragma warning restore 0618
-    }
+    public IEnumerable<Source> Sources => GetSources();
 
     /// <summary>
     /// The <see cref="Sink"/> that gathered resources
@@ -145,10 +126,9 @@ public abstract class Pipeline : MonoBehaviour
     /// Called at the start of this component's lifecycle, this
     /// method finds related components from surrounding objects.
     /// </summary>
-    public void Start()
+    public virtual void Start()
     {
         Store = gameObject.GetComponent<Store>();
-        Sources = GetSources();
     }
 
     #endregion
