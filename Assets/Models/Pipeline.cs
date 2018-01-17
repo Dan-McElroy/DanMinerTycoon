@@ -14,19 +14,7 @@ public abstract class Pipeline : MonoBehaviour
     #region Properties
 
     #region Private
-
-    /// <summary>
-    /// Private variable for <see cref="Workers"/>
-    /// </summary>
-    /// <remarks>
-    /// Not for general use, <see cref="Workers"/>
-    /// should be used to access and mutate this
-    /// value.
-    /// </remarks>
-    [SerializeField]
-    [Obsolete("Use property Workers instead.")]
-    private IEnumerable<Worker> _workers;
-
+    
     /// <summary>
     /// Private variable for <see cref="Sources"/>
     /// </summary>
@@ -95,13 +83,7 @@ public abstract class Pipeline : MonoBehaviour
     /// this <see cref="Pipeline"/>.
     /// </summary>
     public IEnumerable<Worker> Workers
-    {
-// Disable warnings for using Obsolete property.
-#pragma warning disable 0618
-        get { return _workers; }
-        protected set { _workers = value; }
-#pragma warning restore 0618
-    }
+        => transform.GetComponentOfImmediateChildren<Worker>();
 
     /// <summary>
     /// A collection of <see cref="Source"/> objects
@@ -166,7 +148,6 @@ public abstract class Pipeline : MonoBehaviour
     public void Start()
     {
         Store = gameObject.GetComponent<Store>();
-        Workers = gameObject.GetComponentsInChildren<Worker>().ToList();
         Sources = GetSources();
     }
 
