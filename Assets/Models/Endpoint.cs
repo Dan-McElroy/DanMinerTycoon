@@ -68,7 +68,7 @@ public abstract class Endpoint : MonoBehaviour
     /// </summary>
     public void Start()
     {
-        AccessPoint = transform.GetChildObjectsWithTag(AccessPointTag).FirstOrDefault();
+        AccessPoint = transform.GetImmediateChildrenWithTag(AccessPointTag).FirstOrDefault();
     }
 
     #endregion

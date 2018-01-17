@@ -12,7 +12,7 @@ public static class TransformExtensions
     /// <param name="transform">The transform with child objects to be searched.</param>
     /// <param name="tag">The tag to search with.</param>
     /// <returns></returns>
-    public static IEnumerable<Transform> GetChildObjectsWithTag(this Transform transform, string tag)
+    public static IEnumerable<Transform> GetImmediateChildrenWithTag(this Transform transform, string tag)
     {
         var taggedChildren = new List<Transform>();
         for (var i = 0; i < transform.childCount; i++)
