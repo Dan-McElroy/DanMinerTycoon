@@ -23,7 +23,7 @@ public class Store : MonoBehaviour
     /// <summary>
     /// The amount of resource available in the <see cref="Store"/>.
     /// </summary>
-    private float Quantity
+    protected float Quantity
     {
 // Disable warnings for using Obsolete property.
 #pragma warning disable 0618
@@ -70,7 +70,7 @@ public class Store : MonoBehaviour
     /// <returns>
     /// The value actually extracted, which may be less than desired.
     /// </returns>
-    public float Extract(float desiredQuantity)
+    public virtual float Extract(float desiredQuantity)
     {
         var extracted = Math.Min(Quantity, desiredQuantity);
         Quantity -= extracted;

@@ -71,6 +71,8 @@ public class Worker : MonoBehaviour
     }
 
     public bool AtCapacity => Load.ApproximatelyEquals(Status.WorkerCapacity);
+
+    public float RemainingCapacity => Status.WorkerCapacity - Load;
     
     /// <summary>
     /// The current state of the Worker, indicating their current activity.
