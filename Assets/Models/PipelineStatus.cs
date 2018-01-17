@@ -59,6 +59,12 @@ public class PipelineStatus : MonoBehaviour
     #endregion
 
     /// <summary>
+    /// A reference to the player's <see cref="CashStore"/>.
+    /// </summary>
+    public CashStore PlayerCash 
+        => GameObject.FindWithTag("Player").GetComponent<CashStore>();
+
+    /// <summary>
     /// The current travel speed of a <see cref="Worker"/>
     /// in the related <see cref="Pipeline"/>.
     /// </summary>
@@ -123,11 +129,10 @@ public class PipelineStatus : MonoBehaviour
     /// </summary>
     public void Upgrade()
     {
+        PlayerCash.Extract(UpgradeCost);
         Level++;
     }
 
     #endregion
-
-
 }
 
