@@ -9,24 +9,7 @@ using UnityEngine;
 public abstract class Endpoint : MonoBehaviour
 {
     #region Properties
-
-    #region Private
-
-    /// <summary>
-    /// Private variable for <see cref="Infinite"/>
-    /// </summary>
-    /// <remarks>
-    /// Not for general use, <see cref="Infinite"/>
-    /// should be used to access and mutate this
-    /// value.
-    /// </remarks>
-    [SerializeField]
-    [Obsolete("Use property Infinite instead.")]
-    private bool _infinite;
-
-    #endregion
-
-
+    
     /// <summary>
     /// The point from which a worker can access
     /// this endpoint.
@@ -45,19 +28,6 @@ public abstract class Endpoint : MonoBehaviour
     /// </summary>
     public string AccessPointTag;
     
-    /// <summary>
-    /// Determines whether or not the endpoint
-    /// has a limited resource.
-    /// </summary>
-    public bool Infinite
-    {
-//Disable warnings for using Obsolete property.
-#pragma warning disable 0618
-        get { return _infinite; }
-        protected set { _infinite = value; }
-#pragma warning restore 0618
-    }
-
     #endregion
 
     #region MonoBehaviour Methods

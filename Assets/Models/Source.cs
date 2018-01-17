@@ -17,10 +17,7 @@ public class Source : Endpoint
     /// </remarks>
     public override void Access(Worker worker)
     {
-        worker.State = WorkerState.Gathering;
-        var remainingCapacity = worker.Status.WorkerCapacity - worker.Load;
-        worker.Load += Infinite 
-            ? remainingCapacity
-            : Store.Extract(remainingCapacity);
+        worker.State = WorkerState.Gathering;;
+        worker.Load += Store.Extract(worker.RemainingCapacity);
     }
 }
