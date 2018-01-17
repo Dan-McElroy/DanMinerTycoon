@@ -8,12 +8,18 @@ using UnityEngine;
 /// </summary>
 public class Mine : Pipeline
 {
+// Disables warning for unassigned variables, as these
+// variables will be set in the Unity editor.
+#pragma warning disable 0649
+
     /// <summary>
     /// A template for a new tunnel.
     /// </summary>
     [SerializeField]
     private Tunnel TunnelTemplate;
-    
+
+#pragma warning restore 0649
+
     /// <summary>
     /// Finds <see cref="Source"/>s from child <see cref="Tunnel"/> objects.
     /// </summary>
