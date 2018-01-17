@@ -43,7 +43,7 @@ public class PipelineStatus : MonoBehaviour
     private Text LevelText;
     
     /// <summary>
-    /// A reference to the button used to upgrade the Pipeline Status.
+    /// A reference to the text of the button used to upgrade the Pipeline Status.
     /// </summary>
     [SerializeField]
     private Text UpgradeButtonText;
