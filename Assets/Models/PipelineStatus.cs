@@ -41,6 +41,12 @@ public class PipelineStatus : MonoBehaviour
     /// </summary>
     [SerializeField]
     private Text LevelText;
+    
+    /// <summary>
+    /// A reference to the button used to upgrade the Pipeline Status.
+    /// </summary>
+    [SerializeField]
+    private Text UpgradeButtonText;
 
 #pragma warning restore 0649
 
@@ -103,6 +109,7 @@ public class PipelineStatus : MonoBehaviour
         {
             _level = value;
             LevelText.text = value.ToString();
+            UpgradeButtonText.text = $"Upgrade! (Cost: {UpgradeCost.ToString("c2")}";
         }
 #pragma warning restore 0618
     }
@@ -129,6 +136,7 @@ public class PipelineStatus : MonoBehaviour
     /// </summary>
     public void Upgrade()
     {
+        var cash = GameObject.FindWithTag("Player");
         PlayerCash.Extract(UpgradeCost);
         Level++;
     }
