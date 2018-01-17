@@ -23,7 +23,7 @@ public abstract class Endpoint : MonoBehaviour
 
     public void Start()
     {
-        AccessPoint = transform.GetChildObjectsWithTag(AccessPointTag).First();
+        AccessPoint = transform.GetChildObjectsWithTag(AccessPointTag).FirstOrDefault();
     }
 
     // Temporary name.
