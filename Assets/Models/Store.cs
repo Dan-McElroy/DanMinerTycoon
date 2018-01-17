@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
 
 public class Store : MonoBehaviour
@@ -15,7 +12,7 @@ public class Store : MonoBehaviour
         set
         {
             _quantity = value;
-            QuantityText.text = value.ToString();
+            QuantityText.text = value.ToString("c2");
         }
     }
 

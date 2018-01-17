@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public static class TransformHelpers
+public static class TransformExtensions
 {
     public static IEnumerable<Transform> GetChildObjectsWithTag(this Transform transform, string tag)
     {
