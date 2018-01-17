@@ -69,6 +69,8 @@ public class Worker : MonoBehaviour
 #pragma warning restore 0618
         }
     }
+
+    public bool AtCapacity => Load.ApproximatelyEquals(Status.WorkerCapacity);
     
     /// <summary>
     /// The current state of the Worker, indicating their current activity.
@@ -112,6 +114,12 @@ public class Worker : MonoBehaviour
             if (Reached(nextDestination))
             {
                 TaskQueue.Dequeue().Access(this);
+                if (AtCapacity)
+                {
+                    // Filter out all remaining sources from task queue.
+                    TaskQueue = new Queue<Endpoint>(
+                        TaskQueue.Where(task => !(task is Source)));
+                }
                 State = WorkerState.Travelling;
             }
         }
@@ -138,7 +146,7 @@ public class Worker : MonoBehaviour
     public void BeginWork()
     {
         // Visit all sources in the assigned pipeline.
-        TaskQueue = new Queue<Endpoint>(Assignment.Sources.ToArray());
+        TaskQueue = new Queue<Endpoint>(Assignment.Sources);
         // Deposit acquired resources in the Sink.
         TaskQueue.Enqueue(Assignment.Sink);
         // Start travelling.
