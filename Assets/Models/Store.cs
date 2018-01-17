@@ -53,6 +53,8 @@ public class Store : MonoBehaviour
     public void Start()
     {
         QuantityText = gameObject.GetComponentInChildren<TextMesh>();
+        // Updates the display
+        Quantity = Quantity;
     }
 
     #endregion

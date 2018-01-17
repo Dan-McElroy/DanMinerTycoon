@@ -103,6 +103,19 @@ public class PipelineStatus : MonoBehaviour
 
     #endregion
 
+    #region MonoBehaviour Methods
+
+    /// <summary>
+    /// Called at the start of this component's lifecycle, this
+    /// method sets the level value to update the display.
+    /// </summary>
+    public void Start()
+    {
+        Level = Level;
+    }
+
+    #endregion
+
     #region Public Methods
 
     /// <summary>
