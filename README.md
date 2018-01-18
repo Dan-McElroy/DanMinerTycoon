@@ -26,7 +26,7 @@ The following are features that I did not manage to complete in time, but would 
 
 ### Automated testing
 
-See section below in [Areas for Improvement](#Areas-for-Improvement).
+See section below in [Areas for Improvement](#areas-for-improvement).
 
 ### Saving state/Idle resource accrual
 
@@ -38,7 +38,7 @@ How I would imagine idling working is that on close, the application saves its s
 
 Additional miners and minecarts as the player levels up a pipeline is not currently supported.
 
-The way to support this would be similar to the way multiple tunnels are supported: `Pipeline` would include a reference to a prefab for their worker type, and `PipelineStatus` would be given a property to represent its parent `Pipeline`. Then, in a simplistic situation where a new `Worker` is added each level, when the user upgrades the `Pipeline`, if the `Pipeline` supports multiple workers (see thoughts on [Pipeline Polymorphism](#Pipeline-Polymorphism) for how this would be set up), the `PipelineStatus` instantiates a `Worker` of the given prefab with its `Pipeline` as a parent.
+The way to support this would be similar to the way multiple tunnels are supported: `Pipeline` would include a reference to a prefab for their worker type, and `PipelineStatus` would be given a property to represent its parent `Pipeline`. Then, in a simplistic situation where a new `Worker` is added each level, when the user upgrades the `Pipeline`, if the `Pipeline` supports multiple workers (see thoughts on [Pipeline Polymorphism](#pipeline-polymorphism) for how this would be set up), the `PipelineStatus` instantiates a `Worker` of the given prefab with its `Pipeline` as a parent.
 
 ### Requiring a cost to enable managers
 
