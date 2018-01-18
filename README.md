@@ -18,4 +18,34 @@ Sources and sinks are both implementations of the abstract class `Endpoint`, whi
 
 The `Store` object contains a private `Quantity` value and two methods to access it, `Deposit` and `Extract`. `Deposit` simply adds a value to the existing quantity, and `Extract` removes the provided amount, to a minimum of zero. However, `Store` has one subclass, `CashStore`, used as the `Store` for the depot's `Sink`, which overrides `Extract` to throw an exception before it proceeds if the new quantity would otherwise go below zero.
 
-The project also contains
+The project also contains a number of extension methods within `FloatExtensions` and `TransformExtensions`.
+
+## Future Work
+
+The following are features that I did not manage to complete in time, but would be next on the list:
+
+- Saving state/Idle resource accrual
+- Multiple miners and minecarts
+- Requiring a cost to enable managers (they're currently toggled with a click)
+- Increasing tunnel efficiency with depth
+- Appropriate error handling for insufficient player cash
+
+## Areas for Improvement
+
+### Testing
+
+
+
+### Pragmas
+
+In several areas of the codebase, I used a combination of private fields for the purposes of serialization (for example, `_quantity`) and properties which should be used to access them in code (for example, `Quantity`), either for access protection purposes or because the setter of said property involves special functionality.
+
+In order to enforce this behaviour, I added an `Obsolete` attribute to the private fields, which will raise a warning when someone attempts to access them. However, their corresponding properties by necessity must access them, and so I used `#pragma` statements to disable the associated warning within their getter/setter. This ends up being quite verbose once explanatory comments are factored in, and becomes possibly the largest source of repetitive code in the solution.
+
+However, I think the effect of impeding code that would threaten to break the correctness of the program is worth the cost in readability, in this case.
+
+### Class structure
+
+### Logic-Interface Coupling
+
+### Pipeline Polymorphism
